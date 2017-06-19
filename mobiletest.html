@@ -1,0 +1,53 @@
+/*This code is used to store all the user names and passwords of the site into JSON file, using PHP code.*/
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+
+		<title>HTML</title>
+		<meta name="description" content="">
+		<meta name="author" content="pammi">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		<style>
+
+		</style>
+	<link rel="stylesheet" href="js/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="js/jquery.mobile.structure-1.4.5.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+		<script type="text/javascript">
+		$( document ).bind( "mobileinit", function() {
+			$.support.cors =true;
+       $.mobile.allowCrossDomainPages = true;
+			});
+		$(document).on("pageinit",function(){
+		$.ajax({
+		url:"https://newsapi.org/v1/articles?source=time&sortBy=top&apiKey=5442ba94308445dab5609ac218fc7cc0",
+		dataType:"JSON",
+		type:"GET",
+		success:function(data){
+			console.log(data);
+			obj=data.articles;
+			$.each(obj,function(i,e){
+			var str='<li><h2>'+e.title+'</h2><p><small>'+e.description+'</small></p></li>';
+			$("#list").append(str);
+		});
+		$("#list").listview("refresh");
+		}
+			});
+		});
+			</script>
+					<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+			</head>
+		<body>
+			<div id="notes" data-role="page" data-theme="a">
+			<div data-role="header"><h2>News</h2></div>
+			<div data-role="content"><ul id="list" data-role="listview" data-inset="true" data-filter="true" ></ul></div>
+		</div>
+
+
+
+
+		</body>
+		</html>
