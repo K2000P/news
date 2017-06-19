@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>HTML</title>
+		<meta name="description" content="">
+		<meta name="author" content="pammi">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		<link rel="stylesheet" href="js/jquery.mobile-1.4.5.min.css" />
+		<link rel="stylesheet" href="js/jquery.mobile.structure-1.4.5.min.css" />
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+<script>
+			$(function(){
+				var str;
+				$.ajax({
+					url:"https://newsapi.org/v1/articles?source=cnbc&sortBy=top&apiKey=5442ba94308445dab5609ac218fc7cc0",
+					dataType:"json",
+						success:function(data,status){
+						obj=data.articles;
+						$.each(obj,function(i,e){
+							str='<li>'+e.title+'</li>';
+							$("#news-list").append(str);
+
+						});
+				}
+				});
+				$("#news-list").listview("refresh");
+			});
+		</script>
+
+
+		</head>
+		<body>
+		<div id="news" data-role="page">
+			<div data-role="header"><h2>My news</h2></div>
+			<div data-role="content"><ul id="news-list" data-role="listview" data-theme="b"></ul></div>
+		</div>
+
+		</body>
+		</html>
