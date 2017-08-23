@@ -45,20 +45,18 @@
 
 		</style>
 		<script type="text/javascript">
-			$(document).ready(function(){
+		$(document).ready(function(){
 				$.ajax({
 					url:"category.json",
-					method:"GET",					
+					method:"GET",
 					success : function(data){
-						$.each(data,function(){
-							$("#items").append('<li>'+data.itemName+'</li>');					
+							$.each(data,function(i,e){
+							$("#items").append('<li>'+e.itemName+'</li>');
 						});
-						
-					}
 
+					}
 				});
 			});
-
 
 		</script>
 
