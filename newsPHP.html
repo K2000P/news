@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>HTML</title>
+		<meta name="description" content="">
+		<meta name="author" content="pammi">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		<link rel="stylesheet" href="js/jquery.mobile-1.4.5.min.css">
+		<link rel="stylesheet" href="news.min.css">
+		<link rel="stylesheet" href="jquery.mobile.icons.min.css">
+		<link rel="stylesheet" href="js/jquery.mobile.structure-1.4.5.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!--<link rel="stylesheet" href="js/jquerymobile/jquery.mobile-1.4.5.css">-->
+		<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+		<script type="text/javascript" src="jquery.myplugins.js"></script>
+		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+		<script>
+			$( document ).on( "mobileinit", function() {
+				$.mobile.ajaxEnabled = true;
+			 $.mobile.allowCrossDomainPages = true;
+		});
+		</script>
+		<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<style>
+			#headlines > li,#footer,#header,#header2{
+			padding: 10px;
+			}
+			#headlines > li{
+				color:black;
+			}
+			#ctext{
+				float: right;
+			}
+			#header,#header2{
+				text-align:center;font:1.7em bold small-caps;
+			}
+			.source{
+				float:right;font:.6em semi-condensed;
+			}
+			.source a:link {
+				color:#009999;
+			}
+
+		</style>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$.ajax({
+					url:"news.php",
+					method:"GET",
+					data : { url : "https://newsapi.org/v1/articles?source=business-insider&sortBy=top&apiKey=5442ba94308445dab5609ac218fc7cc0"},
+					success : function(data){
+						var news=JSON.parse(data);
+						var obj=news.articles;
+						$.each(obj,function(i,e){
+						$("#news").append("<li><h3>"+e.title+"</h3><br>"+e.description+"<br><italics>"+e.author+"</italics></li>");
+						});
+					}
+
+				});
+			});
+
+
+		</script>
+
+
+		</head>
+		<body>
+			<div data-role="page" id="page1" data-theme="b">
+		<div data-role="header" id="header"  data-theme="b" >Business Insider<span class="source">Powered By : <a href="http://www.newsapi.org">NewsAPI.org</a></span></div>
+		<div data-role="content" class="ui-content" id="content" data-theme="a">
+			<ul id="news" data-role="listview" data-inset="true" data-filter="true"></ul>
+		</div>
+		<div data-role="footer" id="footer" data-theme="c">copyright @2017<br></div>
+		</div>
+
+		</body>
+		</html>
