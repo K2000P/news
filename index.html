@@ -48,14 +48,9 @@
 			$(document).ready(function(){
 				$.ajax({
 					url:"news.php",
-					method:"GET",
-					data : { url : "https://newsapi.org/v1/articles?source=business-insider&sortBy=top&apiKey=5442ba94308445dab5609ac218fc7cc0"},
+					method:"GET",					
 					success : function(data){
-						var news=JSON.parse(data);
-						var obj=news.articles;
-						$.each(obj,function(i,e){
-						$("#news").append("<li><h3>"+e.title+"</h3><br>"+e.description+"<br><italics>"+e.author+"</italics></li>");
-						});
+						$("#news").append(data);					
 					}
 
 				});
@@ -70,7 +65,7 @@
 			<div data-role="page" id="page1" data-theme="b">
 		<div data-role="header" id="header"  data-theme="b" >Business Insider<span class="source">Powered By : <a href="http://www.newsapi.org">NewsAPI.org</a></span></div>
 		<div data-role="content" class="ui-content" id="content" data-theme="a">
-			<ul id="news" data-role="listview" data-inset="true" data-filter="true"></ul>
+			<div id="news"></div>
 		</div>
 		<div data-role="footer" id="footer" data-theme="c">copyright @2017<br></div>
 		</div>
