@@ -50,7 +50,10 @@
 					url:"category.json",
 					method:"GET",					
 					success : function(data){
-						$("#news").append(data);					
+						$.each(data,function(){
+							$("#items").append('<li>'+data.itemName+'</li>');					
+						});
+						
 					}
 
 				});
@@ -65,7 +68,7 @@
 			<div data-role="page" id="page1" data-theme="b">
 		<div data-role="header" id="header"  data-theme="b" >Business Insider<span class="source">Powered By : <a href="http://www.newsapi.org">NewsAPI.org</a></span></div>
 		<div data-role="content" class="ui-content" id="content" data-theme="a">
-			<div id="news"></div>
+			<ul id="items" data-role="listview"  data-theme="a" data-inset="true" data-filter="true></ul>
 		</div>
 		<div data-role="footer" id="footer" data-theme="c">copyright @2017<br></div>
 		</div>
